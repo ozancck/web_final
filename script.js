@@ -92,6 +92,7 @@ function deleteCourse(index) {
 }
 
 
+
 // Function to filter courses based on the search input
 function filterCourses() {
   const searchCourseInput = document.getElementById("searchCourseInput");
@@ -218,89 +219,93 @@ function updateCourseDropdown() {
 }
 
 function displayStudentScores() {
-  // Clear previous content
+  addToTableStudent();
   const studentListDiv = document.getElementById("studentList");
   studentListDiv.innerHTML = "";
 
   // Get the selected course index dynamically
   const courseSelect = document.getElementById("courseSelect");
   const courseIndex = courseSelect.selectedIndex;
-  
-  // Get the selected option
-  const selectedOption = courseSelect.options[courseIndex];
 
-  // Get the text of the selected option
-  const selectedCourseName = selectedOption.text;
+  // Check if there is a selected option
+  if (courseIndex >= 0) {
+    // Get the selected option
+    const selectedOption = courseSelect.options[courseIndex];
 
-  // Log the selected course name to the console (you can use it as needed)
-  console.log("Selected Course Name:", selectedCourseName);
+    // Get the text of the selected option
+    const selectedCourseName = selectedOption.text;
 
-  // Get the element by its ID
-  const sectionTitleElement = document.getElementById("courseName2");
+    // Log the selected course name to the console (you can use it as needed)
+    console.log("Selected Course Name:", selectedCourseName);
 
-  // Set the text content of the element
-  sectionTitleElement.textContent = selectedCourseName;
+    // Get the element by its ID
+    const sectionTitleElement = document.getElementById("courseName2");
 
-  // Create a table to display student scores
-  const table = document.createElement("table");
-  table.border = "1";
+    // Set the text content of the element
+    sectionTitleElement.textContent = selectedCourseName;
 
-  // Create table headers
-  const headers = ["Student Name", "Midterm Score", "Final Score", "BaseCode", "Grade"];
-  const headerRow = document.createElement("tr");
+    // Create a table to display student scores
+    const table = document.createElement("table");
+    table.border = "1";
 
-  headers.forEach((headerText) => {
-    const header = document.createElement("th");
-    header.textContent = headerText;
-    headerRow.appendChild(header);
-  });
+    // Create table headers
+    const headers = ["Student Name", "Midterm Score", "Final Score", "BaseCode", "Grade"];
+    const headerRow = document.createElement("tr");
 
-  table.appendChild(headerRow);
-
-  // Check if there is a selected course
-  if (courseIndex >= 0 && courseIndex < courses.length) {
-    // Populate the table with student data
-    courses[courseIndex].students.forEach((student, index) => {
-      const row = document.createElement("tr");
-      const data = [
-        student.name,
-        student.midtermScore,
-        student.finalScore,
-        student.basecode,
-        student.grade,
-      ];
-
-      data.forEach((cellData) => {
-        const cell = document.createElement("td");
-        cell.textContent = cellData;
-        row.appendChild(cell);
-      });
-
-      // Add a delete button to each student entry
-      const deleteCell = document.createElement("td");
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
-      deleteButton.style.backgroundColor = "red";
-      deleteButton.onclick = () => deleteStudent(courseIndex, index);
-      deleteCell.appendChild(deleteButton);
-      row.appendChild(deleteCell);
-
-      // Add an edit button to each student entry
-      const editCell = document.createElement("td");
-      const editButton = document.createElement("button");
-      editButton.textContent = "Edit";
-
-      editButton.style.backgroundColor = "orange";
-      editButton.onclick = () => editStudent(courseIndex, index);
-      editCell.appendChild(editButton);
-      row.appendChild(editCell);
-      table.appendChild(row);
+    headers.forEach((headerText) => {
+      const header = document.createElement("th");
+      header.textContent = headerText;
+      headerRow.appendChild(header);
     });
-  }
 
-  // Append the table to the studentListDiv
-  studentListDiv.appendChild(table);
+    table.appendChild(headerRow);
+
+    // Check if there is a selected course
+    if (courseIndex >= 0 && courseIndex < courses.length) {
+      // Populate the table with student data
+      courses[courseIndex].students.forEach((student, index) => {
+        const row = document.createElement("tr");
+        const data = [
+          student.name,
+          student.midtermScore,
+          student.finalScore,
+          student.basecode,
+          student.grade,
+        ];
+
+        data.forEach((cellData) => {
+          const cell = document.createElement("td");
+          cell.textContent = cellData;
+          row.appendChild(cell);
+        });
+
+        // Add a delete button to each student entry
+        const deleteCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.style.backgroundColor = "red";
+        deleteButton.onclick = () => deleteStudent(courseIndex, index);
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        // Add an edit button to each student entry
+        const editCell = document.createElement("td");
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.style.backgroundColor = "orange";
+        editButton.onclick = () => editStudent(courseIndex, index);
+        editCell.appendChild(editButton);
+        row.appendChild(editCell);
+        table.appendChild(row);
+      });
+    }
+
+    // Append the table to the studentListDiv
+    studentListDiv.appendChild(table);
+  }
 }
+
 
 
 function editStudent(courseIndex, studentIndex) {
