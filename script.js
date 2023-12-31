@@ -12,6 +12,8 @@ function closeModal(modalId) {
   modal.style.display = "none";
 }
 
+
+//function for adding course
 function addCourse() {
   const courseName = document.getElementById("courseName").value;
 
@@ -46,6 +48,8 @@ function addCourse() {
 }
 
 
+
+//update for adding course
 function updateAttachedCoursesTable(filteredCourses){
   const courseList = document.getElementById("courseList");
   courseList.innerHTML = "";
@@ -92,6 +96,8 @@ function updateAttachedCoursesTable(filteredCourses){
   });
 }
 
+
+//function for delete course
 function deleteCourse(index) {
   // Remove the course at the specified index
   courses.splice(index, 1);

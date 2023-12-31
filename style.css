@@ -1,3 +1,4 @@
+/* Resetting default styles and setting basic page styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -7,6 +8,7 @@ body {
     color: #34495e;
 }
 
+/* Styling the header with background color, text color, padding, and box shadow */
 header {
     background-color: #3498db;
     color: #fff;
@@ -15,10 +17,7 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    margin: 0;
-}
-
+/* Setting styles for the main content container */
 #app {
     max-width: 1200px;
     margin: 20px auto;
@@ -28,14 +27,14 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Styling for flex container with space-between alignment and gap */
 .container {
     display: flex;
-
-
     justify-content: space-between;
     gap: 20px;
 }
 
+/* Styling for individual sections within the container */
 .section {
     flex-basis: 48%;
     padding: 20px;
@@ -45,12 +44,14 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Styling for section headings */
 h2 {
     font-size: 1.8em;
     color: #2c3e50;
     margin-bottom: 15px;
 }
 
+/* Styling for labels, input fields, and select boxes */
 label {
     display: block;
     margin-bottom: 10px;
@@ -67,6 +68,7 @@ select {
     box-sizing: border-box;
 }
 
+/* Styling for buttons with hover effect */
 button {
     background-color: #2ecc71;
     color: white;
@@ -82,6 +84,7 @@ button:hover {
     background-color: #27ae60;
 }
 
+/* Styling for tables with borders and background color */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -95,12 +98,14 @@ td {
     text-align: left;
 }
 
+/* Styling for table headers */
 th {
     background-color: #3498db;
     color: white;
     font-weight: bold;
 }
 
+/* Styling for modal overlay */
 .modal {
     display: none;
     position: fixed;
@@ -112,6 +117,7 @@ th {
     z-index: 1000;
 }
 
+/* Styling for modal content */
 .modal-content {
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -127,6 +133,7 @@ th {
     background-color: #fff;
 }
 
+/* Styling for modal close button */
 .close {
     position: absolute;
     top: 15px;
