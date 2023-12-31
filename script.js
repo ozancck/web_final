@@ -1,4 +1,4 @@
-let courses = [];
+let courses = [{name: "Web Design", students: []},{name: "Databse", students: []},{name: "Data Mining", students: []},{name: "Calculus", students: []}];
 let students = [];
 let allStudents = {}
 
@@ -22,6 +22,8 @@ function addCourse() {
     };
 
     courses.push(newCourse);
+
+
 
     // Update the course dropdown
     updateCourseDropdown();
@@ -55,16 +57,32 @@ function updateAttachedCoursesTable(filteredCourses){
   coursesToDisplay.forEach((course, index) => {
       const row = document.createElement("tr");
 
+
+       
+
       // Add course name to the row
       const nameCell = document.createElement("td");
       nameCell.textContent = course.name;
       row.appendChild(nameCell);
+
+        // Add edit button to the row
+    const editButton = document.createElement("button");
+    editButton.style.backgroundColor = "orange";
+    editButton.textContent = "Edit";
+    editButton.onclick = () => editCourse(index);
+
+    const actionCellEdit = document.createElement("td");
+    actionCellEdit.appendChild(editButton);
+    row.appendChild(actionCellEdit);
 
       // Add delete button to the row
       const deleteButton = document.createElement("button");
       deleteButton.style.backgroundColor = "red";
       deleteButton.textContent = "Delete";
       deleteButton.onclick = () => deleteCourse(index);
+
+
+     
 
       const actionCell = document.createElement("td");
       actionCell.appendChild(deleteButton);
@@ -90,6 +108,35 @@ function deleteCourse(index) {
   // Display an alert view
   showAlert('Course Deleted', 'The course has been deleted successfully.');
 }
+
+function editCourse(courseIndex) {
+  const course = courses[courseIndex];
+
+  // Prompt the user for the new course name
+  const newCourseName = prompt("Enter the new course name:", course.name);
+
+  if (newCourseName) {
+    // Update the course name
+    course.name = newCourseName;
+
+    // Update the course dropdown
+    updateCourseDropdown();
+
+    // Update the attached courses list
+    updateAttachedCoursesTable();
+
+    // Update student scores table
+  displayStudentScores();
+
+    // Display an alert view
+    showAlert("Course Edited", `Course "${newCourseName}" has been edited successfully.`);
+  } else {
+    // Display an error alert view
+    showAlert("Error", "Please enter a valid course name.");
+  }
+}
+
+
 
 
 
@@ -150,6 +197,7 @@ function addStudent() {
       `Student "${studentName}" has been added to the course successfully.`
     );
 
+    console.log(courses[courseIndex].students)
     // Close the modal
     closeModal("studentModal");
   } else {
